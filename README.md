@@ -28,6 +28,7 @@ Every case file in this repository is built using our standardized [Case Templat
 
 | Case # | Alert ID & Description | Category | Verdict | Status | Case File |
 | :---: | :--- | :--- | :---: | :---: | :---: |
+| 01 | [ET MALWARE MirrorBlast CnC Activity M3 (TA505)](cases/case-01-warzone-1/investigation.md) | Malware / C2 | True Positive | Completed | [Case 01 Report](cases/case-01-warzone-1/investigation.md) |
 | — | *Upcoming Case File* | Triage | — | In Progress | [Template](cases/TEMPLATE.md) |
 
 ---
@@ -36,10 +37,17 @@ Every case file in this repository is built using our standardized [Case Templat
 
 ```text
 soc-investigation-casefiles/
-├── README.md               # Repository overview & triage methodology
-├── LICENSE                 # MIT License
+├── README.md                           # Repository overview & triage methodology
+├── LICENSE                             # MIT License
 └── cases/
-    └── TEMPLATE.md         # Standardized investigation template
+    ├── TEMPLATE.md                     # Standardized investigation template
+    └── case-01-warzone-1/               # Case 01: MirrorBlast Malware Triage
+        ├── investigation.md            # Full defensible investigation case file
+        └── screenshots/                # Cropped forensic evidence artifacts
+            ├── 01-brim-traffic-analysis.png
+            ├── 02-wireshark-http-objects.png
+            ├── 03-wireshark-tcp-stream-dropped-files.png
+            └── 04-virustotal-threat-intelligence.png
 ```
 
 ---
