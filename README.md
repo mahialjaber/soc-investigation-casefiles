@@ -11,7 +11,7 @@ A dedicated repository documenting hands-on Security Operations Center (SOC) ale
 
 ## 🧭 Investigation Methodology
 
-Every case file in this repository is built using our standardized [Case Template](cases/TEMPLATE.md) to ensure forensic rigor and clear analytical reasoning:
+Every case file in this repository is built using our standardized 6-step SOC Tier-1 methodology to ensure forensic rigor and clear analytical reasoning:
 
 1. **Executive Summary:** A concise 3-sentence operational brief communicating alert trigger, adversary actions, breach status, and immediate containment.
 2. **Alert Scope:** Pinpointing affected assets, attacker source IPs, external ASNs, and targeted user/service accounts.
@@ -29,7 +29,7 @@ Every case file in this repository is built using our standardized [Case Templat
 | Case # | Alert ID & Description | Category | Verdict | Status | Case File |
 | :---: | :--- | :--- | :---: | :---: | :---: |
 | 01 | [ET MALWARE MirrorBlast CnC Activity M3 (TA505)](cases/case-01-warzone-1/investigation.md) | Malware / C2 | True Positive | Completed | [Case 01 Report](cases/case-01-warzone-1/investigation.md) |
-| — | *Upcoming Case File* | Triage | — | In Progress | [Template](cases/TEMPLATE.md) |
+| 02 | *Upcoming Investigation* | Triage | — | In Progress | Pending |
 
 ---
 
@@ -40,7 +40,6 @@ soc-investigation-casefiles/
 ├── README.md                           # Repository overview & triage methodology
 ├── LICENSE                             # MIT License
 └── cases/
-    ├── TEMPLATE.md                     # Standardized investigation template
     └── case-01-warzone-1/               # Case 01: MirrorBlast Malware Triage
         ├── investigation.md            # Full defensible investigation case file
         └── screenshots/                # Cropped forensic evidence artifacts
