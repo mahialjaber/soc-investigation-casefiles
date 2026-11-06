@@ -27,7 +27,8 @@ Every case file follows a standardized triage workflow:
 | Case # | Alert & Scenario | Focus | Verdict | Report |
 | :---: | :--- | :--- | :---: | :---: |
 | **01** | [ET MALWARE MirrorBlast CnC Activity M3 (TA505)](cases/case-01-warzone-1/investigation.md) | PCAP / C2 Triage | **True Positive** | [Read Case File](cases/case-01-warzone-1/investigation.md) |
-| **02** | *Upcoming Investigation* | Host / Network | In Progress | Pending |
+| **02** | [Persistence & Lateral Execution via WMIC & PowerShell](cases/case-02-investigating-with-splunk/investigation.md) | SIEM / Splunk | **True Positive** | [Read Case File](cases/case-02-investigating-with-splunk/investigation.md) |
+| **03** | *Upcoming Investigation* | Host / Network | In Progress | Pending |
 
 ---
 
