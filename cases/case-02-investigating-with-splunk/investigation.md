@@ -7,7 +7,7 @@
 
 ---
 
-## 1. Executive Summary (3 sentences max)
+## 1. Executive Summary
 During SIEM triage of Windows event logs and Sysmon telemetry in Splunk, an unauthorized lateral execution event was detected where compromised domain account `Cybertees\James` invoked Windows Management Instrumentation (`WMIC.exe /node:WORKSTATION6`) to remotely create a rogue local account (`A1berto`). Forensic inspection confirmed account persistence committed to the Security Account Manager (`HKLM\SAM\SAM\Domains\Account\Users\Names\A1berto`) via character-substitution masquerading (`l` replaced with `1` to mimic legitimate user `Alberto`), while compromised workstation `james.browne` recorded 79 obfuscated PowerShell pipeline executions (Event ID 4103) communicating with internal staging server `hxxp[://]10[.]10[.]10[.]5/news[.]php`. Immediate containment was executed by isolating the affected hosts, terminating active sessions, purging the backdoor account, and escalating the case to Tier-2 DFIR for enterprise-wide lateral movement scoping.
 
 ---
