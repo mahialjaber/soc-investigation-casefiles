@@ -116,13 +116,10 @@ index=main (EventID=12 OR EventID=13) Hostname="james.browne"
 
 To validate the incident with forensic certainty, standard benign operational explanations were tested:
 
-1. **Approved System Administration Scripting:**
-   - *Hypothesis:* An authorized system administrator created a user account remotely via automated provisioning.
-   - *Test:* Standard enterprise provisioning relies on Active Directory Domain Services (AD DS) tools (e.g., `New-ADUser`), Microsoft Endpoint Configuration Manager (MECM), or identity management workflows, not ad-hoc `WMIC.exe /node:...` calls with plaintext credentials.
-2. **Legitimate User Onboarding for "Alberto":**
+1. **Legitimate User Onboarding for "Alberto":**
    - *Hypothesis:* Account creation was part of a regular employee onboarding request.
    - *Test:* The created account name is `A1berto` (with the digit `1` replacing lowercase `l`), whereas legitimate corporate directories identify user `Cybertees\Alberto`. No change ticket or ticketing record requested this spelling. This satisfies MITRE ATT&CK `T1036.005` (Masquerading: Match Legitimate Name).
-3. **Routine Administrative PowerShell Scripting:**
+2. **Routine Administrative PowerShell Scripting:**
    - *Hypothesis:* The PowerShell commands were standard monitoring scripts.
    - *Test:* Standard enterprise scripts do not utilize double-nested Base64-encoded strings (`-enc`) targeting unencrypted HTTP endpoints on non-standard internal addresses (`10.10.10.5/news.php`).
 
