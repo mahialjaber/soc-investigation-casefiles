@@ -60,7 +60,7 @@ Sysmon Event ID 1 capturing `WINWORD.EXE` launching an obfuscated PowerShell pro
 ![Alert 6353 Word Macro Execution](screenshots/03-alert-6353-word-macro-powershell.png)
 
 #### Evidence 4: Ingress Stager De-Obfuscation via MiCode (Custom Analyst Tool)
-The obfuscated `-Enc` parameter extracted from Sysmon Event ID 1 was decoded using **MiCode**, a custom offline PowerShell & Base64 decoder developed by the analyst. Decoding the payload offline ensures sensitive command parameters are analyzed safely without leaking operational telemetry to public online web services. The decoded output revealed the staging URL `http://paylink-cdn[.]thm:8067/svchost_update.ps1` and staging path `%TEMP%\svchost_update.ps1`:
+The obfuscated `-Enc` parameter extracted from Sysmon Event ID 1 was decoded using **[MiCode](https://mahialjaber.github.io/MiCode/)**, a custom offline PowerShell & Base64 decoder developed by the analyst. Decoding the payload offline ensures sensitive command parameters are analyzed safely without leaking operational telemetry to public online web services. The decoded output revealed the staging URL `http://paylink-cdn[.]thm:8067/svchost_update.ps1` and staging path `%TEMP%\svchost_update.ps1`:
 ![MiCode Decoded Stager](screenshots/04-micode-decoded-stager.png)
 
 #### Evidence 5: Threat Intelligence Enrichment on C2 IP (VirusTotal)
