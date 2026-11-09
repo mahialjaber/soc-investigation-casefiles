@@ -9,7 +9,7 @@
 
 ---
 
-## 1. Executive Summary (3 sentences max)
+## 1. Executive Summary
 A multi-stage enterprise intrusion was detected originating from a macro-enabled Word document (`Q3_PressKit_Feedback.docm`) executed on workstation `THM-MSMITH` (`10.60.10.22`), where `WINWORD.EXE` spawned an obfuscated PowerShell process that retrieved a secondary stager (`svchost_update.ps1`) from `paylink-cdn[.]thm:8067` and established a recurring C2 beacon to `45.147.230[.]131:8067` at fixed ~30-second intervals. The adversary conducted local credential dumping using `VAULTCMD.EXE` and network discovery via `net.exe`, leveraging compromised administrative credentials (`svc-mktshare`) to move laterally to studio workstation `THM-SREYES` (`10.60.10.20`). On `THM-SREYES`, the adversary compressed confidential studio assets into a temporary archive using `7z.exe` and successfully initiated outbound exfiltration to `45.147.230[.]131`, prompting immediate multi-host network isolation, credential revocation, and perimeter IP/domain blocking.
 
 ---
