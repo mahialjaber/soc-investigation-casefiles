@@ -29,7 +29,8 @@ Every case file follows a standardized triage workflow:
 | **01** | [ET MALWARE MirrorBlast CnC Activity M3 (TA505)](cases/case-01-warzone-1/investigation.md) | PCAP / C2 Triage | **True Positive** | [Read Case File](cases/case-01-warzone-1/investigation.md) |
 | **02** | [Persistence & Lateral Execution via WMIC & PowerShell](cases/case-02-investigating-with-splunk/investigation.md) | SIEM / Splunk | **True Positive** | [Read Case File](cases/case-02-investigating-with-splunk/investigation.md) |
 | **03** | [Phishing Unfolding – DNS Exfiltration via PowerShell & nslookup](cases/case-03-phishing-unfolding/investigation.md) | SOC Sim / Splunk / Sysmon | **True Positive** | [Read Case File](cases/case-03-phishing-unfolding/investigation.md) |
-| **04** | *Upcoming Investigation* | Host / Network | In Progress | Pending |
+| **04** | [End-to-End Enterprise Intrusion – Macro Foothold to Exfiltration](cases/case-04-macro-foothold-to-exfiltration/investigation.md) | SOC Sim / Sysmon / C2 | **True Positive** | [Read Case File](cases/case-04-macro-foothold-to-exfiltration/investigation.md) |
+| **05** | *Upcoming Investigation* | Host / Network | In Progress | Pending |
 
 ---
 
