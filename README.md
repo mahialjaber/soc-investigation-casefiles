@@ -37,4 +37,4 @@ Every case file follows a standardized triage workflow:
 ## 👤 Author
 
 * **Mahi Al Jaber** ([@mahialjaber](https://github.com/mahialjaber))  
-* Aspiring SOC Analyst & Detection Engineer | [LinkedIn](https://linkedin.com/in/mahialjaber)
+* Security Analyst / Detection Engineer | [X (@mahialjaber)](https://x.com/mahialjaber)
