@@ -35,7 +35,7 @@ A multi-stage enterprise intrusion was detected originating from a macro-enabled
 | Timestamp (UTC) | Alert ID / Log Source | Event & Technical Findings |
 | :--- | :--- | :--- |
 | `2026-11-08 15:18:14` | Alert 6353 / Sysmon EID 1 | Initial execution: `WINWORD.EXE` (PID `6184`) spawned `powershell.exe` (PID `8572`) with arguments `-NoP -W Hidden -Enc <Base64>` on `THM-MSMITH`. |
-| `2026-11-08 15:18:15` | Sysmon EID 1 | De-obfuscated script (decoded via analyst tool **MiCode**) downloaded `svchost_update.ps1` from `paylink-cdn[.]thm:8067` into `%TEMP%` and executed it via a second hidden PowerShell process with `-ExecutionPolicy Bypass`. |
+| `2026-11-08 15:18:15` | Sysmon EID 1 | De-obfuscated script (decoded via analyst tool **Decodora**) downloaded `svchost_update.ps1` from `paylink-cdn[.]thm:8067` into `%TEMP%` and executed it via a second hidden PowerShell process with `-ExecutionPolicy Bypass`. |
 | `2026-11-08 15:18:17` | Alert 6354 / Sysmon EID 3 | Outbound C2 channel established from `THM-MSMITH` (`10.60.10.22:54331`) to `45.147.230[.]131:8067`. Telemetry revealed regular callbacks at fixed ~30-second intervals. |
 | `2026-11-08 15:18:18` | Alert 6355 / Sysmon EID 1 | Credential harvesting: Adversary executed `VAULTCMD.EXE` to extract stored credentials from the Windows Credential Manager. |
 | `2026-11-08 15:23:18` | Alert 6357 / Sysmon EID 1 | Network discovery: Adversary invoked `net.exe` and `net1.exe` for local network enumeration and domain resource discovery. |
@@ -59,9 +59,9 @@ Forensic visualization tracking all 8 alerts across the intrusion lifecycle from
 Sysmon Event ID 1 capturing `WINWORD.EXE` launching an obfuscated PowerShell process with execution-bypass flags:
 ![Alert 6353 Word Macro Execution](screenshots/03-alert-6353-word-macro-powershell.png)
 
-#### Evidence 4: Ingress Stager De-Obfuscation via MiCode (Custom Analyst Tool)
-The obfuscated `-Enc` parameter extracted from Sysmon Event ID 1 was decoded using **[MiCode](https://mahialjaber.github.io/MiCode/)**, a custom offline PowerShell & Base64 decoder developed by the analyst. Decoding the payload offline ensures sensitive command parameters are analyzed safely without leaking operational telemetry to public online web services. The decoded output revealed the staging URL `http://paylink-cdn[.]thm:8067/svchost_update.ps1` and staging path `%TEMP%\svchost_update.ps1`:
-![MiCode Decoded Stager](screenshots/04-micode-decoded-stager.png)
+#### Evidence 4: Ingress Stager De-Obfuscation via Decodora (Custom Analyst Tool)
+The obfuscated `-Enc` parameter extracted from Sysmon Event ID 1 was decoded using **[Decodora](https://mahialjaber.github.io/Decodora/)**, a custom offline PowerShell & Base64 decoder developed by the analyst. Decoding the payload offline ensures sensitive command parameters are analyzed safely without leaking operational telemetry to public online web services. The decoded output revealed the staging URL `http://paylink-cdn[.]thm:8067/svchost_update.ps1` and staging path `%TEMP%\svchost_update.ps1`:
+![Decodora Decoded Stager](screenshots/04-micode-decoded-stager.png)
 
 #### Evidence 5: Threat Intelligence Enrichment on C2 IP (VirusTotal)
 Enrichment of destination address `45.147.230[.]131` confirmed known malicious C2 activity with high-confidence detections across multiple threat intelligence feeds:
