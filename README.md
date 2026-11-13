@@ -1,4 +1,4 @@
-# 🛡️ SOC Investigation Case Files
+# 🛡️ Investigation Case Files
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Focus](https://img.shields.io/badge/Focus-Real--World_%26_Homelab_SOC-blue)](#)
