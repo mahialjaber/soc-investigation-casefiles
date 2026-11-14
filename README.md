@@ -30,7 +30,8 @@ Every case file follows a standardized triage workflow:
 | **02** | [Persistence & Lateral Execution via WMIC & PowerShell](cases/case-02-investigating-with-splunk/investigation.md) | SIEM / Splunk | **True Positive** | [Read Case File](cases/case-02-investigating-with-splunk/investigation.md) |
 | **03** | [Phishing Unfolding – DNS Exfiltration via PowerShell & nslookup](cases/case-03-phishing-unfolding/investigation.md) | SOC Sim / Splunk / Sysmon | **True Positive** | [Read Case File](cases/case-03-phishing-unfolding/investigation.md) |
 | **04** | [End-to-End Enterprise Intrusion – Macro Foothold to Exfiltration](cases/case-04-macro-foothold-to-exfiltration/investigation.md) | SOC Sim / Sysmon / C2 | **True Positive** | [Read Case File](cases/case-04-macro-foothold-to-exfiltration/investigation.md) |
-| **05** | *Upcoming Investigation* | Host / Network | In Progress | Pending |
+| **05** | [CRM Portal Breach – Web Shell Upload to Database Exfiltration](cases/case-05-portal-drop/investigation.md) | Splunk / EDR / Linux | **True Positive** | [Read Case File](cases/case-05-portal-drop/investigation.md) |
+| **06** | *Upcoming Investigation* | Host / Network | In Progress | Pending |
 
 ---
 
